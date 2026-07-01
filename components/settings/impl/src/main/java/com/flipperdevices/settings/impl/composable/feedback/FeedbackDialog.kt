@@ -36,19 +36,23 @@ import com.flipperdevices.core.ui.theme.LocalPallet
 import com.flipperdevices.core.ui.theme.LocalTypography
 import com.flipperdevices.settings.impl.R
 
-private const val FEEDBACK_EMAIL = "serajwazzaz2010@gmail.com"
+private const val FEEDBACK_ISSUES_URL =
+    "https://github.com/SimbaPlayTT/Flipper-Android-App-custom-theme/issues/new"
+private const val FEEDBACK_ISSUE_TITLE = "App Feedback"
 
 /**
- * Sends feedback via a mailto intent instead of posting to a webhook - a webhook secret baked
- * into the app would be recoverable by decompiling the APK (and this app is distributed as a
- * public build), so anyone who downloaded it could abuse it. Email needs no embedded secret and
- * works the same for every install.
+ * Opens a pre-filled "New Issue" page on the public repo instead of posting to a webhook or a
+ * personal inbox - a webhook secret baked into the app would be recoverable by decompiling the
+ * APK (this app is distributed as a public build), and routing to a personal email isn't
+ * appropriate for a public feedback channel either. A GitHub issue needs no embedded secret,
+ * works identically for every install, and is visible to the maintainer through normal GitHub
+ * notifications.
  */
 @Composable
 fun FeedbackDialog(onDismiss: () -> Unit) {
     val context = LocalContext.current
     var message by remember { mutableStateOf("") }
-    var noEmailApp by remember { mutableStateOf(false) }
+    var noBrowserApp by remember { mutableStateOf(false) }
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -107,14 +111,14 @@ fun FeedbackDialog(onDismiss: () -> Unit) {
                         value = message,
                         onValueChange = {
                             message = it
-                            noEmailApp = false
+                            noBrowserApp = false
                         },
                         textStyle = LocalTypography.current.bodyR16.copy(color = LocalPallet.current.text100),
                         cursorBrush = SolidColor(LocalPallet.current.text100)
                     )
                 }
 
-                if (noEmailApp) {
+                if (noBrowserApp) {
                     Text(
                         text = stringResource(R.string.feedback_error),
                         style = LocalTypography.current.subtitleB12,
@@ -127,17 +131,16 @@ fun FeedbackDialog(onDismiss: () -> Unit) {
                     text = stringResource(R.string.feedback_send),
                     enabled = message.isNotBlank(),
                     onClick = {
-                        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("mailto:")
-                            putExtra(Intent.EXTRA_EMAIL, arrayOf(FEEDBACK_EMAIL))
-                            putExtra(Intent.EXTRA_SUBJECT, "Flipper App Feedback")
-                            putExtra(Intent.EXTRA_TEXT, message)
-                        }
+                        val issueUrl = Uri.parse(FEEDBACK_ISSUES_URL).buildUpon()
+                            .appendQueryParameter("title", FEEDBACK_ISSUE_TITLE)
+                            .appendQueryParameter("body", message)
+                            .build()
+                        val browserIntent = Intent(Intent.ACTION_VIEW, issueUrl)
                         try {
-                            context.startActivity(emailIntent)
+                            context.startActivity(browserIntent)
                             onDismiss()
                         } catch (activityNotFoundException: ActivityNotFoundException) {
-                            noEmailApp = true
+                            noBrowserApp = true
                         }
                     }
                 )
