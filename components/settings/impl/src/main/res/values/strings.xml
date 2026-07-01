@@ -39,7 +39,7 @@
     <string name="feedback_title">Leave Feedback</string>
     <string name="feedback_hint">What\'s on your mind?</string>
     <string name="feedback_send">Send</string>
-    <string name="feedback_error">Couldn\'t send feedback - check your connection and try again</string>
+    <string name="feedback_error">No email app found on this device</string>
 
     <string name="debug_options">Debug Options</string>
     <string name="debug_options_desc">Features for developers and testing</string>
