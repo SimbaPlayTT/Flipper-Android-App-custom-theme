@@ -24,6 +24,22 @@
     <string name="theme_picker_dpad">D-PAD</string>
     <string name="theme_picker_reset">Reset</string>
     <string name="theme_picker_done">Done</string>
+    <string name="theme_picker_hex_hint">HEX</string>
+    <string name="theme_picker_hex_error">Enter a 6-digit hex code, e.g. 589DFF</string>
+    <string name="theme_picker_spoof_shell">SPOOF SHELL</string>
+    <string name="theme_picker_spoof_auto">Auto</string>
+    <string name="theme_picker_spoof_white">White</string>
+    <string name="theme_picker_spoof_black">Black</string>
+    <string name="theme_picker_spoof_transparent">Transparent</string>
+    <string name="theme_picker_camera">Camera</string>
+    <string name="theme_picker_camera_error">Couldn\'t read a color from the camera - try again</string>
+
+    <string name="app_feedback_title">Leave Feedback</string>
+    <string name="app_feedback_desc">Send a message directly to the developer</string>
+    <string name="feedback_title">Leave Feedback</string>
+    <string name="feedback_hint">What\'s on your mind?</string>
+    <string name="feedback_send">Send</string>
+    <string name="feedback_error">Couldn\'t send feedback - check your connection and try again</string>
 
     <string name="debug_options">Debug Options</string>
     <string name="debug_options_desc">Features for developers and testing</string>

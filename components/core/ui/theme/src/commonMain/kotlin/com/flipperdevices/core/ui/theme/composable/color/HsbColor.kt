@@ -55,3 +55,27 @@ fun desaturate(color: Color, saturationFactor: Float): Color {
     val hsb = colorToHsb(color)
     return hsbToColor(hue = hsb[0], saturation = hsb[1] * saturationFactor, brightness = hsb[2])
 }
+
+private const val HEX_RADIX = 16
+private const val HEX_LENGTH = 6
+private const val BYTE_MASK = 0xFF
+private const val CHANNEL_MAX = 255f
+
+@Suppress("MagicNumber")
+fun Color.toHexString(): String {
+    val r = (red * CHANNEL_MAX).toInt().coerceIn(0, BYTE_MASK)
+    val g = (green * CHANNEL_MAX).toInt().coerceIn(0, BYTE_MASK)
+    val b = (blue * CHANNEL_MAX).toInt().coerceIn(0, BYTE_MASK)
+    return listOf(r, g, b).joinToString(separator = "") { it.toString(HEX_RADIX).padStart(2, '0') }.uppercase()
+}
+
+/** Parses a bare "RRGGBB" hex string (no leading '#') into a [Color], or null if invalid. */
+@Suppress("MagicNumber")
+fun parseHexColor(hex: String): Color? {
+    if (hex.length != HEX_LENGTH || hex.any { it !in "0123456789abcdefABCDEF" }) return null
+    val value = hex.toLongOrNull(HEX_RADIX) ?: return null
+    val r = ((value shr 16) and 0xFF).toInt()
+    val g = ((value shr 8) and 0xFF).toInt()
+    val b = (value and 0xFF).toInt()
+    return Color(red = r / CHANNEL_MAX, green = g / CHANNEL_MAX, blue = b / CHANNEL_MAX)
+}

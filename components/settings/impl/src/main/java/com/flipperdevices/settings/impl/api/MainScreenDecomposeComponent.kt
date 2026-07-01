@@ -8,6 +8,7 @@ import com.flipperdevices.core.ui.lifecycle.viewModelWithFactory
 import com.flipperdevices.settings.impl.composable.ComposableSettings
 import com.flipperdevices.settings.impl.model.SettingsNavigationConfig
 import com.flipperdevices.settings.impl.viewmodels.DebugViewModel
+import com.flipperdevices.settings.impl.viewmodels.FeedbackViewModel
 import com.flipperdevices.settings.impl.viewmodels.NotificationViewModel
 import com.flipperdevices.settings.impl.viewmodels.SettingsViewModel
 import com.flipperdevices.settings.impl.viewmodels.ThemeColorPickerViewModel
@@ -28,7 +29,8 @@ class MainScreenDecomposeComponent @AssistedInject constructor(
     private val settingsViewModelProvider: Provider<SettingsViewModel>,
     private val debugViewModelProvider: Provider<DebugViewModel>,
     private val versionViewModelProvider: Provider<VersionViewModel>,
-    private val themeColorPickerViewModelProvider: Provider<ThemeColorPickerViewModel>
+    private val themeColorPickerViewModelProvider: Provider<ThemeColorPickerViewModel>,
+    private val feedbackViewModelProvider: Provider<FeedbackViewModel>
 ) : ScreenDecomposeComponent(componentContext) {
     @Composable
     @Suppress("NonSkippableComposable")
@@ -48,12 +50,16 @@ class MainScreenDecomposeComponent @AssistedInject constructor(
         val themeColorPickerViewModel = viewModelWithFactory(key = null) {
             themeColorPickerViewModelProvider.get()
         }
+        val feedbackViewModel = viewModelWithFactory(key = null) {
+            feedbackViewModelProvider.get()
+        }
 
         ComposableSettings(
             settingsViewModel = settingsViewModel,
             notificationViewModel = notificationViewModel,
             versionViewModel = versionViewModel,
             themeColorPickerViewModel = themeColorPickerViewModel,
+            feedbackViewModel = feedbackViewModel,
             onBack = onBack::invoke,
             onOpen = { navigation.pushToFront(it) },
             debugViewModel = debugViewModel,

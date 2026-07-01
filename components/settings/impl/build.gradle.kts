@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("flipper.android-compose")
     id("flipper.anvil")
@@ -5,6 +7,28 @@ plugins {
 }
 
 android.namespace = "com.flipperdevices.settings.impl"
+
+// Read from the git-ignored local.properties (never committed) so the feedback webhook URL
+// never ends up in source control - public builds simply get an empty default and the feature
+// silently no-ops. Set `feedback_webhook_url=...` in your own local.properties to enable it.
+val feedbackWebhookUrl = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { load(it) }
+    }
+}.getProperty("feedback_webhook_url", "")
+
+android {
+    buildTypes {
+        defaultConfig {
+            buildConfigField(
+                "String",
+                "FEEDBACK_WEBHOOK_URL",
+                "\"$feedbackWebhookUrl\""
+            )
+        }
+    }
+}
 
 dependencies {
     implementation(projects.components.settings.api)
@@ -47,6 +71,12 @@ dependencies {
     implementation(libs.appcompat)
 
     // Compose
+    implementation(libs.compose.activity)
+    implementation(libs.camerax.core)
+    implementation(libs.camerax.camera2)
+    implementation(libs.camerax.lifecycle)
+    implementation(libs.camerax.view)
+
     implementation(libs.compose.ui)
     implementation(libs.compose.tooling)
     implementation(libs.compose.foundation)
@@ -57,4 +87,6 @@ dependencies {
 
     implementation(libs.kotlin.serialization.json)
     implementation(libs.kotlin.immutable.collections)
+
+    implementation(libs.ktor.client)
 }

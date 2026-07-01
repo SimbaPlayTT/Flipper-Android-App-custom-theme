@@ -25,6 +25,7 @@ fun AppCategory(
     vibrationState: Boolean,
     onSwitchVibration: (Boolean) -> Unit,
     onOpenThemePicker: () -> Unit,
+    onOpenFeedback: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     CardCategory(modifier = modifier) {
@@ -42,6 +43,12 @@ fun AppCategory(
             titleId = R.string.app_custom_theme_title,
             descriptionId = R.string.app_custom_theme_desc,
             onClick = onOpenThemePicker
+        )
+        GrayDivider()
+        ClickableElement(
+            titleId = R.string.app_feedback_title,
+            descriptionId = R.string.app_feedback_desc,
+            onClick = onOpenFeedback
         )
         GrayDivider()
         PushNotificationElement(

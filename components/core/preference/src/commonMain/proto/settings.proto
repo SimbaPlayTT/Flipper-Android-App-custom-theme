@@ -41,6 +41,12 @@ enum FileManagerSort {
   SIZE = 1;
 }
 
+enum SpoofShellColor {
+  SPOOF_WHITE = 0;
+  SPOOF_BLACK = 1;
+  SPOOF_TRANSPARENT = 2;
+}
+
 message Settings {
   reserved 7; // Already unused tags
   reserved 12; // Already unused  first_synchronization_passed
@@ -81,4 +87,6 @@ message Settings {
   float custom_accent_saturation = 37;
   float custom_accent_brightness = 38;
   float custom_dpad_accent_hue = 39;
+  bool spoof_shell_enabled = 40;
+  SpoofShellColor spoof_shell_color = 41;
 }

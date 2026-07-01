@@ -29,10 +29,12 @@ import com.flipperdevices.settings.impl.composable.category.ExperimentalCategory
 import com.flipperdevices.settings.impl.composable.category.ExportKeysCategory
 import com.flipperdevices.settings.impl.composable.category.OtherSettingsCategory
 import com.flipperdevices.settings.impl.composable.category.VersionCategory
+import com.flipperdevices.settings.impl.composable.feedback.FeedbackDialog
 import com.flipperdevices.settings.impl.composable.theme.ThemeColorPickerDialog
 import com.flipperdevices.settings.impl.model.DebugSettingAction
 import com.flipperdevices.settings.impl.model.SettingsNavigationConfig
 import com.flipperdevices.settings.impl.viewmodels.DebugViewModel
+import com.flipperdevices.settings.impl.viewmodels.FeedbackViewModel
 import com.flipperdevices.settings.impl.viewmodels.NotificationViewModel
 import com.flipperdevices.settings.impl.viewmodels.SettingsViewModel
 import com.flipperdevices.settings.impl.viewmodels.ThemeColorPickerViewModel
@@ -46,6 +48,7 @@ fun ComposableSettings(
     debugViewModel: DebugViewModel,
     versionViewModel: VersionViewModel,
     themeColorPickerViewModel: ThemeColorPickerViewModel,
+    feedbackViewModel: FeedbackViewModel,
     onOpen: (SettingsNavigationConfig) -> Unit,
     onDebugAction: (DebugSettingAction) -> Unit,
     modifier: Modifier = Modifier,
@@ -58,11 +61,19 @@ fun ComposableSettings(
     val exportState by settingsViewModel.getExportState().collectAsState()
     val notificationState by notificationViewModel.getNotificationToggleState().collectAsState()
     var showThemePicker by remember { mutableStateOf(false) }
+    var showFeedback by remember { mutableStateOf(false) }
 
     if (showThemePicker) {
         ThemeColorPickerDialog(
             viewModel = themeColorPickerViewModel,
             onDismiss = { showThemePicker = false }
+        )
+    }
+
+    if (showFeedback) {
+        FeedbackDialog(
+            viewModel = feedbackViewModel,
+            onDismiss = { showFeedback = false }
         )
     }
 
@@ -82,7 +93,8 @@ fun ComposableSettings(
                 onChangeNotificationState = notificationViewModel::switchToggle,
                 vibrationState = !settings.disabled_vibration,
                 onSwitchVibration = settingsViewModel::onSwitchVibration,
-                onOpenThemePicker = { showThemePicker = true }
+                onOpenThemePicker = { showThemePicker = true },
+                onOpenFeedback = { showFeedback = true }
             )
             if (settings.expert_mode) {
                 DebugCategory(

@@ -3,16 +3,31 @@ package com.flipperdevices.settings.impl.viewmodels
 import androidx.compose.ui.graphics.Color
 import androidx.datastore.core.DataStore
 import com.flipperdevices.core.preference.pb.Settings
+import com.flipperdevices.core.preference.pb.SpoofShellColor
 import com.flipperdevices.core.ui.lifecycle.DecomposeViewModel
 import com.flipperdevices.core.ui.theme.composable.color.colorToHsb
 import com.flipperdevices.core.ui.theme.composable.color.hsbToColor
+import com.flipperdevices.core.ui.theme.composable.color.parseHexColor
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+/** null = follow whatever the connected device actually reports (no spoof). */
+data class SpoofShellState(val color: SpoofShellColor?)
+
+/**
+ * Brightness is floored (never allowed to reach 0) so the accent can never become pure/near
+ * black - a black accent makes the D-Pad (which uses accent as both its circular background
+ * AND its icon fill/stroke) render as a solid black disc with invisible black icons.
+ */
+const val MIN_ACCENT_BRIGHTNESS = 0.25f
 
 data class ThemeDraftState(
     val hue: Float,
@@ -36,14 +51,35 @@ class ThemeColorPickerViewModel @Inject constructor(
                 draftStateFlow.value = ThemeDraftState(
                     hue = settings.custom_accent_hue,
                     saturation = settings.custom_accent_saturation,
-                    brightness = settings.custom_accent_brightness,
+                    brightness = settings.custom_accent_brightness.coerceAtLeast(MIN_ACCENT_BRIGHTNESS),
                     dPadHue = settings.custom_dpad_accent_hue
                 )
             }
         }
     }
 
+    private val spoofShellStateFlow = dataStoreSettings.data
+        .map { settings ->
+            SpoofShellState(color = settings.spoof_shell_color.takeIf { settings.spoof_shell_enabled })
+        }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, SpoofShellState(color = null))
+
     fun getDraftState(): StateFlow<ThemeDraftState> = draftStateFlow.asStateFlow()
+
+    fun getSpoofShellState(): StateFlow<SpoofShellState> = spoofShellStateFlow
+
+    /** Pass null to stop spoofing and go back to whatever the connected device actually reports. */
+    fun setSpoofShellColor(color: SpoofShellColor?) {
+        viewModelScope.launch {
+            dataStoreSettings.updateData {
+                if (color == null) {
+                    it.copy(spoof_shell_enabled = false)
+                } else {
+                    it.copy(spoof_shell_enabled = true, spoof_shell_color = color)
+                }
+            }
+        }
+    }
 
     fun updateHue(hue: Float) {
         draftStateFlow.update { it.copy(hue = hue) }
@@ -54,19 +90,46 @@ class ThemeColorPickerViewModel @Inject constructor(
     }
 
     fun updateBrightness(brightness: Float) {
-        draftStateFlow.update { it.copy(brightness = brightness) }
+        draftStateFlow.update { it.copy(brightness = brightness.coerceAtLeast(MIN_ACCENT_BRIGHTNESS)) }
     }
 
     fun updateDPadHue(dPadHue: Float) {
         draftStateFlow.update { it.copy(dPadHue = dPadHue) }
     }
 
-    fun selectPreset(color: Color) {
+    fun selectPreset(color: Color) = applyColor(color)
+
+    /** Applies an exact hex color (e.g. matched from a photo of the device) to the draft. */
+    fun applyHex(hex: String): Boolean {
+        val color = parseHexColor(hex) ?: return false
+        applyColor(color)
+        return true
+    }
+
+    /** Applies an exact color (e.g. a preset or hex entry) to the draft. */
+    fun applyColor(color: Color) {
         val hsb = colorToHsb(color)
         draftStateFlow.value = ThemeDraftState(
             hue = hsb[0],
             saturation = hsb[1],
-            brightness = hsb[2],
+            brightness = hsb[2].coerceAtLeast(MIN_ACCENT_BRIGHTNESS),
+            dPadHue = hsb[0]
+        )
+        commitDraft()
+    }
+
+    /**
+     * Applies a color sampled from the camera, ignoring its sampled brightness - camera exposure
+     * and ambient lighting make photographed brightness unreliable (the same shell looks dim
+     * indoors and blown-out in daylight), so only hue/saturation from the sample are trusted and
+     * brightness is forced to full, giving a vivid, consistent accent regardless of lighting.
+     */
+    fun applyCameraColor(color: Color) {
+        val hsb = colorToHsb(color)
+        draftStateFlow.value = ThemeDraftState(
+            hue = hsb[0],
+            saturation = hsb[1],
+            brightness = 1f,
             dPadHue = hsb[0]
         )
         commitDraft()
