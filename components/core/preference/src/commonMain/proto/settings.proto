@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option java_package = "com.flipperdevices.core.preference.pb";
+option java_multiple_files = true;
+
+enum SelectedTab {
+  DEVICE = 0;
+  ARCHIVE = 1;
+  TOOLS = 2;
+  APPS = 3;
+}
+
+enum SelectedChannel {
+  RELEASE = 0;
+  RELEASE_CANDIDATE = 1;
+  DEV = 2;
+}
+
+enum SelectedTheme {
+  SYSTEM = 0;
+  DARK = 1;
+  LIGHT = 2;
+}
+
+enum SelectedCatalogSort {
+  UPDATE_AT_DESC = 0;
+  UPDATE_AT_ASC = 1;
+  CREATED_AT_DESC = 2;
+  CREATED_AT_ASC = 3;
+  NAME_DESC = 4;
+  NAME_ASC = 5;
+}
+
+enum FileManagerOrientation {
+  LIST = 0;
+  GRID = 1;
+}
+
+enum FileManagerSort {
+  DEFAULT = 0;
+  SIZE = 1;
+}
+
+message Settings {
+  reserved 7; // Already unused tags
+  reserved 12; // Already unused  first_synchronization_passed
+  reserved 16; // Already unused last_provided_region
+  reserved 18; // https://github.com/flipperdevices/Flipper-Android-App/pull/452
+  reserved 9; // Already unused shake_to_report
+  reserved 19; // Already unused application_catalog
+  reserved 20; // Already unused faphub_new_switch
+  reserved 21; // Already unused application_catalog
+  reserved 24; // Already unused use_new_infrared
+
+  bool used_foreground_service = 2;
+  bool enabled_debug_settings = 3;
+  bool enabled_experimental_functions = 4;
+  SelectedTab selected_tab = 5;
+  bool ignore_unsupported_version = 6;
+  bool always_update = 8;
+  SelectedChannel selected_channel = 10;
+  string uuid = 11;
+  SelectedTheme selected_theme = 13;
+  bool expert_mode = 14;
+  bool ignore_subghz_provisioning_on_zero_region = 15;
+  bool skip_auto_sync_in_debug = 17;
+  bool self_updater_debug = 22;
+  bool use_dev_catalog = 23;
+  SelectedCatalogSort selected_catalog_sort = 25;
+  bool fatal_ble_security_exception_happens = 26;
+  bool notification_topic_update_enabled = 27;
+  bool notification_dialog_shown = 28;
+  bool show_remote_controls = 29;
+  FileManagerOrientation file_manager_orientation = 30;
+  FileManagerSort file_manager_sort = 31;
+  bool show_hidden_files_on_flipper = 32;
+  bool disabled_vibration = 33;
+  bool infrared_remotes_tab_shown = 34;
+  bool custom_accent_theme_enabled = 35;
+  float custom_accent_hue = 36;
+  float custom_accent_saturation = 37;
+  float custom_accent_brightness = 38;
+  float custom_dpad_accent_hue = 39;
+}

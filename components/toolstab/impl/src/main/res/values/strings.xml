@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toolstab_title">Tools</string>
+    <string name="toolstab_hfc_title">NFC Tools</string>
+    <string name="toolstab_hfc_desc">Calculate MIFARE Classic card keys using Flipper Zero</string>
+    <string name="nfcattack_mifare_classic_title">MIFARE Classic</string>
+    <string name="nfcattack_mifare_classic_mfkey32_title">Mfkey32 (Extract MF Keys)</string>
+    <string name="nfcattack_mifare_classic_mfkey32_desc">Calculate keys from Extract MF Keys</string>
+    <string name="remtoecontrols_title">MIFARE Classic</string>
+    <string name="card_beta">Beta</string>
+    <string name="remotes_library_infrared_title">Infrared</string>
+    <string name="remotes_library_title">Remotes Library</string>
+    <string name="remotes_library_desc">Find and save remotes for your devices from a wide range of brands and models</string>
+</resources>

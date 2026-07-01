@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sd_card_missing_title">No SD Card</string>
+    <string name="sd_card_ok_title">SD Card</string>
+    <string name="sd_card_missing_desc">Insert a microSD card in Flipper Zero to access Files</string>
+    <string name="sd_card_used">Used</string>
+    <string name="sd_card_total">Total</string>
+    <string name="filemngr_error_retry">Retry</string>
+
+    <string name="filemngr_error_unsupported_title">Unsupported Feature</string>
+    <string name="filemngr_error_unsupported_desc">Unfortunately, this feature is no supported on current device</string>
+
+    <string name="filemngr_error_unknown_title">Unexpected error</string>
+    <string name="filemngr_error_unknown_desc">Unexpected error has occur</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="receive_save_btn">Save To Archive</string>
+    <string name="receive_title">Add Key</string>
+    <string name="receive_edit_btn">Edit</string>
+    <string name="receive_error_conflict">Error when saving. A key with this name already exists</string>
+
+    <string name="saved_key_desc">saved to Archive</string>
+
+    <string name="receive_retry_btn">Retry</string>
+    <string name="receive_no_internet_title">Not Internet Connection</string>
+    <string name="receive_no_internet_desc">Unable to download this key</string>
+    <string name="receive_error_server_title">Can\'t Connect to the Server</string>
+    <string name="receive_error_server_desc">Unable to download this key</string>
+    <string name="receive_error_other_title">Unable to import key</string>
+    <string name="receive_error_other_desc">An error occurred while import key</string>
+    <string name="receive_invalid_file_format">Invalid File Format</string>
+    <string name="receive_invalid_file_format_desc">Unable to import this file</string>
+    <string name="receive_invalid_expired_link">Expired Link</string>
+    <string name="receive_invalid_expired_link_desc">Unable to import file from this link</string>
+</resources>

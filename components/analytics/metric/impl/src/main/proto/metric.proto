@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "events/flipper_gatt_info.proto";
+import "events/flipper_rpc_info.proto";
+import "events/open.proto";
+import "events/synchronization_end.proto";
+import "events/update_flipper_start.proto";
+import "events/update_flipper_end.proto";
+import "events/sub_ghz_provisioning.proto";
+import "events/debug.proto";
+
+package metric;
+option java_package = "com.flipperdevices.pbmetric";
+
+message MetricReportRequest {
+  string session_uuid = 4;
+  string version = 5;
+  string uuid = 2; // User uuid
+  enum Platform {
+    ANDROID = 0;
+    ANDROID_DEBUG = 1;
+    IOS = 2;
+    IOS_DEBUG = 3;
+  }
+  Platform platform = 3;
+
+  repeated MetricEventsCollection events = 1;
+}
+
+message MetricEventsCollection {
+  oneof event {
+    events.Open open = 1;
+    events.FlipperGattInfo flipper_gatt_info = 2;
+    events.FlipperRpcInfo flipper_rpc_info = 3;
+    events.UpdateFlipperStart update_flipper_start = 4;
+    events.UpdateFlipperEnd update_flipper_end = 5;
+    events.SynchronizationEnd synchronization_end = 12;
+    events.SubGhzProvisioning subghz_provisioning = 13;
+    events.DebugInfo debug_info = 14;
+  }
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="updater_card_updater_title">Firmware Update</string>
+    <string name="updater_card_updater_title_whatsnew">What’s New</string>
+    <string name="updater_card_updater_channel">Update Channel</string>
+    <string name="updater_card_updater_error_retry">Retry</string>
+    <string name="updater_card_updater_button_no_updates">NO UPDATES</string>
+    <string name="updater_card_updater_button_no_updates_desc">There are no updates in the selected channel</string>
+    <string name="updater_card_updater_button_choose_file">CHOOSE FILE</string>
+    <string name="updater_card_updater_button_choose_file_desc">Use the firmware from .tgz files to update</string>
+    <string name="updater_card_updater_button_install">INSTALL</string>
+    <string name="updater_card_updater_button_install_desc">Firmware on Flipper doesn’t match the selected update channel. Selected version will be installed.</string>
+    <string name="updater_card_updater_button_update">UPDATE</string>
+    <string name="updater_card_updater_button_update_desc">Update Flipper to the latest version</string>
+    <string name="updater_card_updater_progress">Checking for updates…</string>
+    <string name="updater_card_updater_reboot_title">Update started</string>
+    <string name="updater_card_updater_reboot_desc">Flipper is updating in offline mode. Check the device screen for info and wait for reconnect.</string>
+    <string name="updater_card_firmware_version_choice">Choice version</string>
+
+    <string name="update_card_error_no_internet_title">No internet connection</string>
+    <string name="update_card_error_no_internet_desc">Can\'t connect to update server</string>
+    <string name="update_card_error_server_request_title">Unable to download firmware </string>
+    <string name="update_card_error_server_request_desc">Can\'t connect to update server</string>
+    <string name="update_card_error_no_sd_title">No SD card</string>
+    <string name="update_card_error_no_sd_desc">Insert microSD card in Flipper to update firmware</string>
+
+    <string name="update_card_dialog_battery_title">Low Battery on Flipper</string>
+    <string name="update_card_dialog_battery_desc" formatted="false">Charge Flipper to 10% before installing the update</string>
+
+    <string name="update_card_dialog_extension_title">Unsupported File Format</string>
+    <string name="update_card_dialog_extension_desc">Use the file with .tgz extension</string>
+
+    <string name="update_card_dialog_file_big_title">File Size is Too Large</string>
+    <string name="update_card_dialog_file_big_desc">Unable to upload this file</string>
+
+    <string name="update_card_dialog_pause_sync_title">Pause Synchronization?</string>
+    <string name="update_card_dialog_pause_sync_update">Pause &amp; Update</string>
+    <string name="update_card_dialog_pause_sync_install">Pause &amp; Install</string>
+    <string name="update_card_dialog_pause_sync_desc_pre_install">Cannot update to</string>
+    <string name="update_card_dialog_pause_sync_desc_pre_update">Cannot install</string>
+    <string name="update_card_dialog_pause_sync_desc_post">during synchronization. Wait for sync to finish or pause it.</string>
+    <string name="update_card_dialog_pause_sync_cancel">Cancel</string>
+
+    <string name="update_card_confirm_update_title">Update Firmware?</string>
+    <string name="update_card_confirm_install_title">Install Firmware?</string>
+    <string name="update_card_confirm_desc_pre">New firmware</string>
+    <string name="update_card_confirm_desc_post">will be installed</string>
+    <string name="update_card_confirm_update">Update</string>
+    <string name="update_card_confirm_install">Install</string>
+    <string name="update_card_confirm_stop">Cancel</string>
+
+    <string name="update_card_dialog_battery_btn">Got It</string>
+    <string name="update_card_dialog_successful_title">Update Successful</string>
+    <string name="update_card_dialog_successful_desc">was installed on your Flipper</string>
+    <string name="update_card_dialog_successful_btn" tools:ignore="ButtonCase,Typos">Ok</string>
+    <string name="update_card_dialog_failed_title">Update Failed</string>
+    <string name="update_card_dialog_failed_desc">wasn\'t installed on your Flipper. Try to install it again</string>
+    <string name="update_card_dialog_failed_btn" tools:ignore="ButtonCase,Typos">Ok</string>
+    <string name="update_card_dialog_unknown_version">Update</string>
+</resources>

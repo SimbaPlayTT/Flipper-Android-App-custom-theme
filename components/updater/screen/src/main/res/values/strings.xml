@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="update_button_cancel">Cancel</string>
+
+    <string name="update_stage_starting_desc">Starting</string>
+    <string name="update_stage_subghz_desc">Preparing to update</string>
+    <string name="update_stage_sync_canceling_desc">Cancel the synchronisation</string>
+    <string name="update_stage_downloading_desc">Downloading from update server</string>
+    <string name="update_stage_uploading_desc">Uploading Firmware to Flipper</string>
+    <string name="update_stage_rebooting_desc">Rebooting Flipper</string>
+    <string name="update_stage_update_canceling_desc">Canceling the update</string>
+
+    <string name="update_dialog_title">Update Firmware?</string>
+    <string name="update_dialog_sync_title">Pause Synchronization?</string>
+    <string name="update_dialog_desc">New Firmware %1$s will be installed</string>
+    <string name="update_dialog_sync_desc">Firmware update is not possible during synchronization. Wait for sync to finish or pause it</string>
+    <string name="update_dialog_sync_yes">Pause</string>
+    <string name="update_dialog_sync_no">Continue</string>
+    <string name="update_dialog_yes">Update</string>
+    <string name="update_dialog_no">Cancel</string>
+    <string name="update_cancel_dialog_title">Stop Update?</string>
+    <string name="update_cancel_dialog_desc">Flipper will still have the previous firmware version</string>
+    <string name="update_cancel_dialog_yes">Stop</string>
+    <string name="update_cancel_dialog_no">Continue</string>
+
+    <string name="update_screen_title">Updating your Flipper</string>
+    <string name="update_screen_title_failed">Unable to Update</string>
+    <string name="update_screen_cancel">Cancel</string>
+    <string name="update_screen_failed_flipper_title">Can’t connect to Flipper</string>
+    <string name="update_screen_failed_flipper_desc">1. Check Bluetooth connection with Flipper\n\n2. Make sure Flipper is Turned On\n\n3. If Flipper doesn’t respond, reboot it and connect to the app via Bluetooth\n\n4. Restart firmware update</string>
+    <string name="update_screen_failed_flipper_link">[Read More](https://docs.flipperzero.one/basics/reboot)</string>
+    <string name="update_screen_failed_network_title">Unable to download firmware</string>
+    <string name="update_screen_failed_network_desc">Can\'t connect to update server</string>
+    <string name="update_screen_failed_network_btn">Retry</string>
+    <string name="update_screen_failed_outdated_app_title">Outdated mobile app version</string>
+    <string name="update_screen_failed_outdated_app_desc">Update app to the latest version to install firmware on Flipper</string>
+    <string name="update_screen_failed_outdated_app_btn">[Go to Google Play](https://play.google.com/store/apps/details?id=com.flipperdevices.app)</string>
+    <string name="update_screen_failed_int_desc">Flipper’s **internal flash storage is full or broken**. Free up space or try factory resetting to restore the internal flash storage.</string>
+    <string name="update_screen_failed_int_link">[How to do Factory Reset](https://flipp.dev/storage-repair)</string>
+    <string name="update_screen_failed_int_update_dec">Something wrong with custom update</string>
+    <string name="update_screen_whats_new">What’s New</string>
+</resources>

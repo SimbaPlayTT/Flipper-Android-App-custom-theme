@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option java_package = "com.flipperdevices.core.preference.pb";
+option java_multiple_files = true;
+
+message NewPairSettings {
+  string current_selected_device_id = 1;
+
+  reserved 2, 3, 4, 5, 6, 7, 8, 9;
+
+  repeated SavedDevice devices = 10;
+}
+
+message SavedDevice {
+  string id = 1;
+  string name = 2;
+  reserved 3, 4, 5, 6, 7, 8, 9;
+
+  oneof data {
+    FlipperZeroBle flipper_zero_ble = 10;
+    FlipperZeroUsb flipper_zero_usb = 11;
+  }
+}
+
+message FlipperZeroBle {
+  string address = 1;
+
+  enum HardwareColor {
+    WHITE = 0;
+    BLACK = 1;
+    TRANSPARENT = 2;
+  }
+
+  HardwareColor hardware_color = 2;
+}
+
+message FlipperZeroUsb {
+  string path = 1;
+
+}

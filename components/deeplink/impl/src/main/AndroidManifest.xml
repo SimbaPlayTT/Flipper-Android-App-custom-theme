@@ -1,0 +1,122 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <application>
+        <activity
+                android:exported="true"
+                android:name="${splashScreenActivity}">
+            <intent-filter
+                    android:autoVerify="true"
+                    tools:ignore="UnusedAttribute">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <!-- Please, also add host in FFFUrlConstants or another Deeplink parser-->
+                <data android:host="dev.flpr.app" />
+                <data android:host="flpr.app" />
+                <data android:host="my.flipp.dev" />
+                <data android:host="lab.flipper.net" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="flipperkey" />
+            </intent-filter>
+            <intent-filter android:icon="@drawable/ic_fileformat_ibutton">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="text/*" />
+                <data android:mimeType="*/*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:pathPattern=".*\\.ibtn" />
+            </intent-filter>
+            <intent-filter android:icon="@drawable/ic_fileformat_nfc">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="text/*" />
+                <data android:mimeType="*/*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:pathPattern=".*\\.nfc" />
+            </intent-filter>
+            <intent-filter android:icon="@drawable/ic_fileformat_sub">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="text/*" />
+                <data android:mimeType="*/*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:pathPattern=".*\\.sub" />
+            </intent-filter>
+            <intent-filter android:icon="@drawable/ic_fileformat_rf">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="text/*" />
+                <data android:mimeType="*/*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:pathPattern=".*\\.rfid" />
+            </intent-filter>
+            <intent-filter android:icon="@drawable/ic_fileformat_ir">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="text/*" />
+                <data android:mimeType="*/*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:pathPattern=".*\\.ir" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

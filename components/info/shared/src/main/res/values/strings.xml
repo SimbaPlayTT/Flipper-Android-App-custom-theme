@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="info_device_firmware_version_dev">Dev</string>
+    <string name="info_device_firmware_version_dev_full">Development</string>
+    <string name="info_device_firmware_version_dev_desc">Daily unstable build, lots of bugs</string>
+    <string name="info_device_firmware_version_rc">RC</string>
+    <string name="info_device_firmware_version_rc_full">Release Candidate</string>
+    <string name="info_device_firmware_version_rc_desc">Pre-release under testing</string>
+    <string name="info_device_firmware_version_release">Release</string>
+    <string name="info_device_firmware_version_release_full">Release</string>
+    <string name="info_device_firmware_version_release_desc">Stable release (recommended)</string>
+    <string name="info_device_firmware_version_custom">Custom</string>
+    <string name="info_device_firmware_version_custom_desc">Upload file with custom firmware</string>
+
+    <string name="info_device_firmware_version_unknown_empty" />
+
+    <string name="info_device_unknown">—</string>
+</resources>

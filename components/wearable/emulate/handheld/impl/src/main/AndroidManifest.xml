@@ -1,0 +1,31 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <application>
+
+        <service
+                android:exported="true"
+                android:name=".service.WearRequestListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.CHANNEL_EVENT" />
+
+                <data
+                        android:host="*"
+                        android:path="/emulate"
+                        android:scheme="wear" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                        android:name="com.google.android.gms.wearable.BIND_LISTENER"
+                        tools:ignore="WearableBindListener" />
+            </intent-filter>
+        </service>
+
+        <service
+                android:foregroundServiceType="connectedDevice"
+                android:exported="false"
+                android:name=".service.WearRequestForegroundService"
+                android:stopWithTask="false" />
+    </application>
+</manifest>

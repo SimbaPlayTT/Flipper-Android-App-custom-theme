@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="options">Options</string>
+
+    <string name="app_theme_options">Color Theme</string>
+    <string name="app_theme_options_desc">System/Light/Dark</string>
+    <string name="app_theme_options_system">System</string>
+    <string name="app_theme_options_light">Light</string>
+    <string name="app_theme_options_dark">Dark</string>
+    <string name="app_theme_options_unknown">Unknown</string>
+    <string name="app_title">App</string>
+    <string name="app_notification_title">Push Notifications</string>
+    <string name="app_notification_desc">Notify about new firmware releases</string>
+    <string name="app_vibration_title">Vibration</string>
+    <string name="app_vibration_desc">Vibration feedback in the app</string>
+    <string name="app_custom_theme_title">Custom Theme</string>
+    <string name="app_custom_theme_desc">Personalize the app\'s accent color</string>
+
+    <string name="theme_picker_title">Custom Theme</string>
+    <string name="theme_picker_presets">Presets</string>
+    <string name="theme_picker_hue">HUE</string>
+    <string name="theme_picker_saturation">SATURATION</string>
+    <string name="theme_picker_brightness">BRIGHTNESS</string>
+    <string name="theme_picker_dpad">D-PAD</string>
+    <string name="theme_picker_reset">Reset</string>
+    <string name="theme_picker_done">Done</string>
+
+    <string name="debug_options">Debug Options</string>
+    <string name="debug_options_desc">Features for developers and testing</string>
+    <string name="debug_stress_test">Stress Test</string>
+    <string name="debug_stress_test_desc">App performance testing</string>
+    <string name="debug_start_synchronization">Start Synchronization</string>
+    <string name="debug_ignored_unsupported_version">Ignore Unsupported Firmware Version</string>
+    <string name="debug_ignored_unsupported_version_desc">App will work with an unsupported Flipper firmware version</string>
+    <string name="debug_ignored_update_version">Ignore Firmware Version in Updater</string>
+    <string name="debug_ignored_update_version_desc">Update button is active even if the selected Flipper firmware version is already installed</string>
+    <string name="debug_subghz_provisioning_ignore">Skip SubGhz provisioning</string>
+    <string name="debug_subghz_provisioning_ignore_desc">Not provisioning SubGhz region when hardware region 0</string>
+    <string name="debug_restart_rpc">Restart RPC</string>
+    <string name="debug_skip_autosync">Skip auto synchronization in Debug mode</string>
+    <string name="debug_selfupdater">Suggest self update in debug mode</string>
+    <string name="debug_application_catalog_dev">Use dev catalog</string>
+    <string name="debug_application_show_remote_controls">Show remote controls</string>
+    <string name="debug_application_installall_dev">Install all app</string>
+    <string name="debug_broke_session">Broke RPC/BLE session</string>
+
+
+    <string name="debug_ignored_unsupported_version_toast">Please restart the application to apply</string>
+
+    <string name="experimental_options">Experimental Options</string>
+    <string name="experimental_options_desc">Unstable and untested features</string>
+    <string name="experimental_file_manager">File Manager</string>
+    <string name="experimental_file_manager_desc">Navigate through Flipper files</string>
+    <string name="experimental_screen_streaming">Screen Streaming</string>
+    <string name="experimental_screen_streaming_desc">Control Flipper via phone</string>
+    <string name="experimental_application_catalog">Enable Apps in Hub</string>
+
+    <string name="other_github_open">GitHub</string>
+    <string name="other_github_url">https://github.com/flipperdevices/Flipper-Android-App</string>
+    <string name="other_forum_open">Forum</string>
+    <string name="other_forum_url">https://forum.flipperzero.one/</string>
+    <string name="other_shake2report_open">Report Bug</string>
+    <string name="export_keys">Backup keys</string>
+    <string name="export_keys_picker_title">Save the zip with the keys…</string>
+    <string name="version_name_app">Flipper Mobile App</string>
+    <string name="version">Version</string>
+
+    <string name="check_updates_text">Flipper Mobile App</string>
+    <string name="check_updates_desc">Version from %1$s: %2$s</string>
+    <string name="check_updates_button">Check Updates</string>
+    <string name="check_no_updates_button">Got It</string>
+    <string name="check_no_updates_title">No Updates</string>
+    <string name="check_no_updates_text">No updates available for mobile app yet. You’re up-to-date!</string>
+
+</resources>
