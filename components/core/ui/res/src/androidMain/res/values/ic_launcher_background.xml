@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#FF9211</color>
+    <!-- Purple instead of the official app's orange, so the two are easy to tell apart
+         in the launcher when both are installed side by side. -->
+    <color name="ic_launcher_background">#8000FF</color>
 </resources>

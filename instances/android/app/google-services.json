@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:25283638650:android:442ac89403612b0f7812c3",
         "android_client_info": {
-          "package_name": "com.flipperdevices.app"
+          "package_name": "com.flipperdevices.app.customtheme"
         }
       },
       "oauth_client": [

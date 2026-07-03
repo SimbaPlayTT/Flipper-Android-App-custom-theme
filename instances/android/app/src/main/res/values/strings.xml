@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flipper</string>
+    <string name="app_name">Flipper CT</string>
 
     <string name="shortcut_find">Find</string>
     <string name="shortcut_find_desc">Find Device</string>

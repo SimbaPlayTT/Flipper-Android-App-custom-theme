@@ -19,9 +19,10 @@ import com.flipperdevices.screenstreaming.impl.viewmodel.repository.StreamingRep
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 private const val VIBRATOR_TIME_MS = 10L
 
@@ -46,6 +47,17 @@ class ScreenStreamingViewModel @AssistedInject constructor(
         settings = settings
     )
 
+    /**
+     * Button presses are sent from Compose's onClick, i.e. the main thread. Reading this via
+     * `runBlocking { settings.data.first() }` on every single press used to block the UI thread
+     * on a DataStore disk read before the RPC command was even sent, which is a major contributor
+     * to perceived remote-control latency. Caching it reactively makes each read a free in-memory
+     * StateFlow access instead.
+     */
+    private val disabledVibrationStateFlow = settings.data
+        .map { it.disabled_vibration }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
     init {
         lifecycleOwner.lifecycle.subscribe(streamingRepository)
     }
@@ -58,10 +70,7 @@ class ScreenStreamingViewModel @AssistedInject constructor(
         buttonEnum: ButtonEnum,
         inputType: InputType
     ) {
-        vibrator?.vibrateCompat(
-            VIBRATOR_TIME_MS,
-            runBlocking { settings.data.first().disabled_vibration }
-        )
+        vibrator?.vibrateCompat(VIBRATOR_TIME_MS, disabledVibrationStateFlow.value)
 
         val uuid = buttonStackRepository.onNewStackButton(buttonEnum.animEnum)
         flipperButtonRepository.pressOnButton(

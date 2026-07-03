@@ -4,7 +4,9 @@ import com.flipperdevices.buildlogic.model.FlavorType
 import org.gradle.api.Project
 
 object ApkConfig {
-    const val APPLICATION_ID = "com.flipperdevices.app"
+    // Deliberately distinct from the official "com.flipperdevices.app" so this custom-theme fork
+    // can be installed side by side with the Play Store app instead of conflicting with it.
+    const val APPLICATION_ID = "com.flipperdevices.app.customtheme"
 
     const val MIN_SDK_VERSION = 26
 
