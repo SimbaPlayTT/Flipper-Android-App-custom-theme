@@ -9,12 +9,12 @@ jobs:
     outputs:
       GRADLE_FILES_CHANGED: ${{ steps.gradle-related-changed.outputs.any_changed }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4
         with:
           submodules: 'recursive'
       - name: Check that gradle files changed
         id: gradle-related-changed
-        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        uses: tj-actions/changed-files@934b2d2c7e653bb8c968afed5a0428617f09aa24 # v45.0.5
         with:
           files: |
             **.gradle.kts
@@ -30,11 +30,11 @@ jobs:
       matrix:
         target: [ "Release", "Debug", "Internal" ]
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4
         with:
           submodules: 'recursive'
       - name: Set up JDK 1.17
-        uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4
+        uses: actions/setup-java@1bcf9fb12cf4aa7d266a90ae39939e61372fe520 # v4
         with:
           distribution: 'temurin'
           java-version: '17'
